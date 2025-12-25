@@ -3,14 +3,30 @@ version: "3"
 services:
  devopsdb:
    container_name: devopsdb
-   image: shaikmustafa/valluri:dbimage
+   #image: shaikmustafa/valluri:dbimage
+   build: ./Docker-db/
    ports:
-     - "3306:3306"
+     - "3306:3306
+   networks:
+     - app_network
+     - db_network
 
  application:
-   image: shaikmustafa/valluri:appimage
    container_name: containerapp
+   #image: shaikmustafa/valluri:appimage
+   build: ./Docker-app/
    ports:
      - "1234:8080"
-   depends_on:
-     - "devopsdb"
+   networks:
+     - app_network
+     - db_network
+   #depends_on:
+    # - "devopsdb"
+
+
+networks:
+  db_network:
+    driver: bridge
+   app_network:
+     driver: bridge
+  
