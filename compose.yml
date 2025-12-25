@@ -6,7 +6,7 @@ services:
    #image: shaikmustafa/valluri:dbimage
    build: ./Docker-db/
    ports:
-     - "3306:3306
+     - "3306:3306"
    networks:
      - app_network
      - db_network
@@ -27,6 +27,6 @@ services:
 networks:
   db_network:
     driver: bridge
-   app_network:
-     driver: bridge
+  app_network:
+    driver: bridge
   
