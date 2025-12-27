@@ -8,9 +8,6 @@ services:
      replicas: 3
    ports:
      - "3306:3306"
-   networks:
-     - app_network
-     - db_network
 
  application:
    image: hemantmunagaala/myrepo:appimage
@@ -19,16 +16,6 @@ services:
      replicas: 3
    ports:
      - "1234:8080"
-   networks:
-     - app_network
-     - db_network
-   #depends_on:
-    # - "devopsdb"
-
-
-networks:
-  db_network:
-    driver: bridge
-  app_network:
-    driver: bridge
+   depends_on:
+     - "devopsdb"
   
